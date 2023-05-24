@@ -10,9 +10,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -34,15 +31,12 @@ class KafkaControllerTest {
     void 카프카_message_produce() throws Exception {
         // Given
         String url ="/sample";
-        ObjectMapper objectMapper = new ObjectMapper();
-        Map<String, Object> params = new HashMap<>();
-        params.put("message","hello");
-        System.out.println(objectMapper.writeValueAsString(params));
-
+        SampleDto sampleDto = new SampleDto();
+        sampleDto.setMessage("hello");
 
         // When
         ResultActions actions = mockMvc.perform(post(url)
-                .content(objectMapper.writeValueAsString(params))
+                .content(new ObjectMapper().writeValueAsString(sampleDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
         );
 

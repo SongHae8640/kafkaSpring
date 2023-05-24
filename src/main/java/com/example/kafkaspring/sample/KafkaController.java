@@ -11,8 +11,8 @@ public class KafkaController {
     private final KafkaProducer kafkaProducer;
 
     @PostMapping
-    public String sample(@RequestParam(name = "message", required = false) String message) {
-        kafkaProducer.sendMessage(message);
+    public String sample(@RequestBody SampleDto sampleDto) {
+        kafkaProducer.sendMessage(sampleDto.getMessage());
         return "success";
     }
 
