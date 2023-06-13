@@ -12,14 +12,14 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class BoardCreateEventListener {
+public class PushAlarmEventListener {
 
     private final AlarmSubscriptionService alarmService;
     private final PushAlarmService pushAlarmService;
 
     @Async
     @EventListener
-    public void handleBoardCreateEvent(BoardCreateEvent boardCreateEvent) {
+    public void producePushAlarmByCategorySubscriber(BoardCreateEvent boardCreateEvent) {
         List<PushAlarm> pushAlarmList = alarmService.findAlarmSubscriberByCategory(boardCreateEvent.getCategory())
                 .stream()
                 .map(userId -> PushAlarm.builder()

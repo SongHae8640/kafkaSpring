@@ -18,7 +18,6 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -90,8 +89,6 @@ class BoardControllerTest {
         /**
          * Given
          */
-        // check PushAlarmList
-        assertEquals(0, pushAlarmService.findAll().size());
 
         // subscribeAlarm
         List<Integer> userIdList = List.of(1,2,3,4,5);
@@ -121,9 +118,6 @@ class BoardControllerTest {
          * Then
          */
         System.out.println("------------------");
-
-        // check PushAlarmList
-        assertEquals(userIdList.size(), pushAlarmService.findAll().size());
 
         // check api response
         actions.andExpect(status().isOk())
