@@ -30,4 +30,13 @@ public class PushAlarmEventListener {
 
         pushAlarmService.saveList(pushAlarmList);
     }
+
+
+    @Async
+    @EventListener
+    public void producePushAlarmByFollowerSubscriber(BoardCreateEvent boardCreateEvent) {
+        System.out.println("팔로우 구독자 알림");
+
+    }
+
 }
