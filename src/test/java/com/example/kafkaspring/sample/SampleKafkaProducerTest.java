@@ -5,10 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class KafkaProducerTest {
+class SampleKafkaProducerTest {
 
     @Autowired
-    private KafkaProducer kafkaProducer;
+    private SampleKafkaProducer kafkaProducer;
 
 
     @Test

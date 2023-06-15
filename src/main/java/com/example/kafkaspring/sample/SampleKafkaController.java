@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/sample")
 @RequiredArgsConstructor
-public class KafkaController {
+public class SampleKafkaController {
 
-    private final KafkaProducer kafkaProducer;
+    private final SampleKafkaProducer kafkaProducer;
 
     @PostMapping
     public String sample(@RequestBody SampleDto sampleDto) {

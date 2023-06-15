@@ -4,10 +4,10 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KafkaConsumer1 {
+public class SampleKafkaConsumer2 {
 
-    @KafkaListener(topics = "sample", groupId = "consumerGroup1")
+    @KafkaListener(topics = "sample", groupId = "consumerGroup2")
     public void consume(String message) {
-        System.out.println("KafkaConsumer1 :: Consumed message: " + message);
+        System.out.println("KafkaConsumer2 :: Consumed message: " + message);
     }
 }
