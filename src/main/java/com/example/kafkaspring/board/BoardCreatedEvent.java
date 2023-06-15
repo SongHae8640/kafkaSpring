@@ -7,7 +7,8 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 @Builder
-public class BoardCreateEvent {
+public class BoardCreatedEvent {
+    private final Long id;
     private final BoardCategory category;
     private final String title;
     private final String content;

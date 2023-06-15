@@ -15,12 +15,14 @@ public class BoardAspect {
 
     @AfterReturning(value = "execution(* com.example.kafkaspring.board.BoardController.createBoard(..))", returning = "board")
     public void afterSaveBoard(Board board) {
-        System.out.println("publishEvent board ::  " + board);
-        publisher.publishEvent(BoardCreateEvent.builder()
+        BoardCreatedEvent boardCreatedEvent = BoardCreatedEvent.builder()
+                .id(board.getId())
                 .category(board.getCategory())
                 .title(board.getTitle())
                 .content(board.getContent())
-                .build()
-        );
+                .build();
+
+        System.out.println("publishEvent :: boardCreatedEvent = " + boardCreatedEvent);
+        publisher.publishEvent(boardCreatedEvent);
     }
 }
