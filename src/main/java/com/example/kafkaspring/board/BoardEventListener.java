@@ -1,5 +1,7 @@
 package com.example.kafkaspring.board;
 
+import com.example.kafkaspring.board.event.BoardCreatedEvent;
+import com.example.kafkaspring.board.event.BoardDeletedEvent;
 import com.example.kafkaspring.kafka.KafkaProducer;
 import com.example.kafkaspring.kafka.Topic;
 import lombok.AllArgsConstructor;
@@ -15,7 +17,20 @@ public class BoardEventListener {
 
     @Async
     @EventListener
-    public void handleBoardCreatedEvent(BoardCreatedEvent boardCreatedEvent) {
+    public void sendBoardCreatedEvent(BoardCreatedEvent boardCreatedEvent) {
         kafkaProducer.send(Topic.BOARD_CREATED, boardCreatedEvent);
     }
+
+    @Async
+    @EventListener
+    public void sendBoardDeletedEvent(BoardDeletedEvent boardDeletedEvent) {
+        kafkaProducer.send(Topic.BOARD_DELETED, boardDeletedEvent);
+    }
+
+    @Async
+    @EventListener
+    public void deleteCommentByBoard(BoardDeletedEvent boardDeletedEvent) {
+        System.out.println("Board에 속한 Comment 삭제");
+    }
+
 }

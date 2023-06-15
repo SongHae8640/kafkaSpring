@@ -1,5 +1,6 @@
-package com.example.kafkaspring.board;
+package com.example.kafkaspring.board.event;
 
+import com.example.kafkaspring.board.BoardCategory;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

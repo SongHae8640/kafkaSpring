@@ -16,4 +16,9 @@ public class BoardController {
     public Board createBoard(@RequestBody BoardDto boardDto) {
         return boardService.saveBoard(boardDto);
     }
+
+    @DeleteMapping("/{id}")
+    public Long deleteBoard(@PathVariable Long id) {
+        return boardService.deleteBoard(id);
+    }
 }

@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -32,6 +33,9 @@ class BoardControllerTest {
 
     @Autowired
     AlarmSubscriptionService alarmSubscriptionService;
+
+    @Autowired
+    BoardService boardService;
 
     @Autowired
     private final ObjectMapper objectMapper = new ObjectMapper();
@@ -74,4 +78,28 @@ class BoardControllerTest {
                 .andExpect(jsonPath("$.content").value(boardDto.getContent()))
                 .andExpect(jsonPath("$.id").exists());
     }
+
+
+    @Test
+    void 게시판_글삭제() throws Exception {
+        // Given
+        BoardDto boardDto = BoardDto.builder()
+                .category("JOIN")
+                .title("오늘 날씨 좋네요")
+                .content("골프치기 좋은 날씨네요. 조인하실 분?")
+                .build();
+        Board board = boardService.saveBoard(boardDto);
+        String url ="/api/boards/"+board.getId();
+
+        // When
+        ResultActions actions = mockMvc.perform(delete(url)
+                .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        // Then
+        System.out.println("------------------");
+        actions.andExpect(status().isOk())
+        ;
+    }
+
 }

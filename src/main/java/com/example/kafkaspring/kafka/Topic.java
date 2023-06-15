@@ -7,6 +7,7 @@ import lombok.Getter;
 @Getter
 public enum Topic {
     BOARD_CREATED("community.boardCreated", "게시글 생성"),
+    BOARD_DELETED("community.boardDeleted", "게시글 삭제"),
     ;
 
     private final String topic;

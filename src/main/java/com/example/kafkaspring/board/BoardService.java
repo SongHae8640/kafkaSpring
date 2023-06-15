@@ -15,4 +15,10 @@ public class BoardService {
         System.out.println("saveBoard :: board = " + board);
         return board;
     }
+
+    public Long deleteBoard(Long id) {
+        boardRepository.deleteById(id);
+        System.out.println("deleteBoard :: id = " + id);
+        return id;
+    }
 }
